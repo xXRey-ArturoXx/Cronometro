@@ -1,0 +1,10 @@
+/* Toques sutiles para móviles */
+body { -webkit-tap-highlight-color: transparent; }
+
+#texto_reloj {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Badges claros si tu Bootstrap no los trae por defecto */
+.bg-primary-subtle { background-color: rgba(13,110,253,.1) !important; }
+.text-primary-emphasis { color: #0d6efd !important; }
