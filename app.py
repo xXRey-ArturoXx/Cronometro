@@ -20,6 +20,7 @@ en_marcha= False                # (bandera del cronómetro)
 def ahora_utc():
     return datetime.now(timezone.utc)
 
+#------- METODOS PARA CALCULAR --------
 def formatear_milisegundos(ms: int) -> str:
     # CONVERTIR ms -> "02:03.456" (mm:ss.mmm)
     """
@@ -38,6 +39,8 @@ def calcular_transcurrido_ms(inicio: datetime, actual: datetime) -> int:
     """
     delta = actual - inicio
     return int(delta.total_seconds() * 1000)
+
+#----- SOBRE EL API DE LA APPWEB -------
 
 # RUTA DE LA PAGINA A EJECUTAR
 @aplicacion.get("/")
@@ -68,6 +71,17 @@ def api_iniciar():
         "tiempo_inicio": tiempo_inicio.isoformat(),
         "hora_servidor": ahora_utc().isoformat()
     })
+    
+#Ruta para stream en tiempo real
+"""
+@aplicacion.route("/stream")
+def stream():
+    def event_stream():
+        # aquí podrías vigilar cambios y yield "data: {...}\n\n"
+        pass
+    return Response(event_stream(), mimetype="text/event-stream")
+
+"""
 
 
 @aplicacion.post("/api/reiniciar")

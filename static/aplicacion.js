@@ -30,6 +30,9 @@ const inputFolio = document.getElementById("entrada_folio");
 const btnAgregar = document.getElementById("boton_agregar");
 const cuerpo = document.getElementById("cuerpo_registros");
 
+// Constante para evento en tiempo real
+// const evtSource = new EventSource("/stream");
+
 // ======= FUNCIONES =======
 // Actualiza el estado en la interfaz: mensaje de estado y boton iniciar
 function renderEstado(){
@@ -37,6 +40,17 @@ function renderEstado(){
   btnIniciar.textContent = en_marcha ? "Iniciado" : "Iniciar";
   btnIniciar.disabled = en_marcha;
 }
+
+// Evento para hacerlo en tiempo real
+/*
+  const evtSource = new EventSource("/stream");
+evtSource.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    if (data.evento === "iniciar") {
+        iniciarCronometro(data.tiempo_inicio);
+    }
+};
+*/
 
 //Calcula los milisegundos transcurridos.
 //Si está pausado devuele lo acumulado, si está corriendo suma lo actual.
